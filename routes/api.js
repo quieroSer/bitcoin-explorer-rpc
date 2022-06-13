@@ -5,8 +5,10 @@ var request = require('request')
 const dotenv = require('dotenv')
 dotenv.config()
 
-const USER = process.env.RPC_USER
-const PASS = process.env.RPC_PASSWORD
+const USER = process.env.RPC_USER //Bitcoin Node RPC user, located in bitcoin.conf inside the folder ~/.bitcoin
+const PASS = process.env.RPC_PASSWORD // Bitcoin Node RPC password, located in bitcoin.conf inside the folder ~/.bitcoin
+const BITCOIN_NODE_IP = process.env.BITCOIN_NODE_IP // Your Bitcoin IP address
+const NODE_PORT = process.env.NODE_PORT // Default port is 8332
 
 const headers = {
     "content-type": "text/plain"
@@ -19,7 +21,7 @@ router.get('/test', (req, res) => res.json({msg: "backend works"}))
 router.get("/getblockcount", (req, res) => {
     var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getblockcount","params":[]}`;
     var options = {
-      url: `http://${USER}:${PASS}@127.0.0.1:8332/`,
+      url: `http://${USER}:${PASS}@${BITCOIN_NODE_IP}:${NODE_PORT}/`,
       method: "POST",
       headers: headers,
       body: dataString
@@ -40,7 +42,7 @@ router.get("/getblockcount", (req, res) => {
 router.get("/getbestblockhash", (req, res) => {
   var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getbestblockhash","params":[]}`;
   var options = {
-    url: `http://${USER}:${PASS}@127.0.0.1:8332/`,
+    url: `http://${USER}:${PASS}@${BITCOIN_NODE_IP}:${NODE_PORT}/`,
     method: "POST",
     headers: headers,
     body: dataString
@@ -59,7 +61,7 @@ router.get("/getbestblockhash", (req, res) => {
 router.get("/getconnectioncount", (req, res) => {
   var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getconnectioncount","params":[]}`;
   var options = {
-    url: `http://${USER}:${PASS}@127.0.0.1:8332/`,
+    url: `http://${USER}:${PASS}@${BITCOIN_NODE_IP}:${NODE_PORT}/`,
     method: "POST",
     headers: headers,
     body: dataString
@@ -78,7 +80,7 @@ router.get("/getconnectioncount", (req, res) => {
 router.get("/getdifficulty", (req, res) => {
   var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getdifficulty","params":[]}`;
   var options = {
-    url: `http://${USER}:${PASS}@127.0.0.1:8332/`,
+    url: `http://${USER}:${PASS}@${BITCOIN_NODE_IP}:${NODE_PORT}/`,
     method: "POST",
     headers: headers,
     body: dataString
@@ -97,7 +99,7 @@ router.get("/getdifficulty", (req, res) => {
 router.get("/getblockchaininfo", (req, res) => {
   var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getblockchaininfo","params":[]}`;
   var options = {
-    url: `http://${USER}:${PASS}@127.0.0.1:8332/`,
+    url: `http://${USER}:${PASS}@${BITCOIN_NODE_IP}:${NODE_PORT}/`,
     method: "POST",
     headers: headers,
     body: dataString
@@ -116,7 +118,7 @@ router.get("/getblockchaininfo", (req, res) => {
 router.get("/getmininginfo", (req, res) => {
   var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getmininginfo","params":[]}`;
   var options = {
-    url: `http://${USER}:${PASS}@127.0.0.1:8332/`,
+    url: `http://${USER}:${PASS}@${BITCOIN_NODE_IP}:${NODE_PORT}/`,
     method: "POST",
     headers: headers,
     body: dataString
@@ -135,7 +137,7 @@ router.get("/getmininginfo", (req, res) => {
 router.get("/getpeerinfo", (req, res) => {
   var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getpeerinfo","params":[]}`;
   var options = {
-    url: `http://${USER}:${PASS}@127.0.0.1:8332/`,
+    url: `http://${USER}:${PASS}@${BITCOIN_NODE_IP}:${NODE_PORT}/`,
     method: "POST",
     headers: headers,
     body: dataString
@@ -154,7 +156,7 @@ router.get("/getpeerinfo", (req, res) => {
 router.get("/getrawmempool", (req, res) => {
   var dataString = `{"jsonrpc":"1.0","id":"curltext","method":"getrawmempool","params":[]}`;
   var options = {
-    url: `http://${USER}:${PASS}@127.0.0.1:8332/`,
+    url: `http://${USER}:${PASS}@${BITCOIN_NODE_IP}:${NODE_PORT}/`,
     method: "POST",
     headers: headers,
     body: dataString
@@ -177,7 +179,7 @@ router.get("/getblockhash/:index", (req, res) => {
     req.params.index
   }]}`;
   var options = {
-    url: `http://${USER}:${PASS}@127.0.0.1:8332/`,
+    url: `http://${USER}:${PASS}@${BITCOIN_NODE_IP}:${NODE_PORT}/`,
     method: "POST",
     headers: headers,
     body: dataString
@@ -198,7 +200,7 @@ router.get("/getblock/:hash", (req, res) => {
     req.params.hash
   }"]}`;
   var options = {
-    url: `http://${USER}:${PASS}@127.0.0.1:8332/`,
+    url: `http://${USER}:${PASS}@${BITCOIN_NODE_IP}:${NODE_PORT}/`,
     method: "POST",
     headers: headers,
     body: dataString
@@ -219,7 +221,7 @@ router.get("/getrawtransaction/:id", (req, res) => {
     req.params.id
   }"]}`;
   var options = {
-    url: `http://${USER}:${PASS}@127.0.0.1:8332/`,
+    url: `http://${USER}:${PASS}@${BITCOIN_NODE_IP}:${NODE_PORT}/`,
     method: "POST",
     headers: headers,
     body: dataString
@@ -246,7 +248,7 @@ router.get("/decoderawtransaction/:hex", (req, res) => {
     req.params.hex
   }"]}`;
   var options = {
-    url: `http://${USER}:${PASS}@127.0.0.1:8332/`,
+    url: `http://${USER}:${PASS}@${BITCOIN_NODE_IP}:${NODE_PORT}/`,
     method: "POST",
     headers: headers,
     body: dataString

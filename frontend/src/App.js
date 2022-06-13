@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import FormSubmission from './form';
 
@@ -54,10 +53,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
+          
           <h1>Bitcoin API</h1>
           {/* devuelve la propiedad blocks del objeto result de la resupesta a la query get blockchaininfo */}
           <p>Number of blocks: {this.state.blockchainInfo.blocks}</p>

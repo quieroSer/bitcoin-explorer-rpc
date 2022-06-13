@@ -18,6 +18,7 @@ export default class FormSubmission extends React.Component {
         const data = res.data;
         const result = data.result;
         this.setState({ blockHash: result });
+        console.log("I did the request")
       })
       .catch(err => console.log(err));
   };
@@ -38,7 +39,7 @@ export default class FormSubmission extends React.Component {
     return  (
       <div>
         <input type="text" value={this.state.searchQuery} onChange={this.handleInputChanged.bind(this)}
-         required minLength={1} maxLength={6}/>
+         required minLength={1} maxLength={8}/>
         <button onClick={this.handleButtonClicked.bind(this)}>
           Submit
         </button>
